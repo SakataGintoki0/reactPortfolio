@@ -1,3 +1,4 @@
+import AppList from '../apps/AppList';
 import Directories from '../directories/Directories';
 
 const wallpapers = [
@@ -13,9 +14,10 @@ export default function Container() {
       style={{
         backgroundImage: `url(${wallpapers[0].img})`,
       }}
-      className={`h-screen w-full bg-cover bg-center`}
+      className={`h-screen w-full relative bg-cover bg-center overflow-none`}
     >
       <Directories />
+      <AppList />
     </div>
   );
 }

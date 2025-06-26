@@ -1,28 +1,29 @@
 import { useEffect, useRef } from 'react';
 import Draggable from 'react-draggable';
+import { useAppStore } from '../../store/appStore.ts';
 
 export default function Directory({
   name,
   imgUrl,
-  selected,
-  handleSelected,
-  removeSelection,
 }: {
   name: string;
   imgUrl: string;
-  selected: string;
-  handleSelected: (name: string) => void;
-  removeSelection: () => void;
 }) {
   const nodeRef = useRef<HTMLDivElement | null>(null);
+  const selectedDir = useAppStore((state) => state.selectedDir);
+  const handleSelected = useAppStore((state) => state.setSelectedDir);
+  const removeSelection = useAppStore((state) => state.removeSelectedDir);
+  const openApp = useAppStore((state) => state.openApp);
 
-  const handleMouseDown = () => {
-    // handleSelected(name);
+  const handleMouseDown = () => {};
+
+  const handleDoubleClick = () => {
+    openApp(name);
   };
 
   const handleLeftClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (selected === name) {
+    if (selectedDir === name) {
       removeSelection();
     } else {
       handleSelected(name);
@@ -52,21 +53,27 @@ export default function Directory({
   return (
     <Draggable
       nodeRef={nodeRef as React.RefObject<HTMLElement>}
-      bounds="parent"
+      bounds='parent'
       onStart={() => handleMouseDown()}
     >
       <div
         ref={nodeRef}
         onContextMenu={handleRightClick}
         onClick={handleLeftClick}
+        onDoubleClick={handleDoubleClick}
         className={
-          selected.includes(name)
-            ? 'flex flex-col gap-[4px] items-center justify-center w-16 p-1 py-2 bg-blue-600/10 border border-white/20'
-            : 'flex flex-col gap-[4px] items-center justify-center w-16 p-1 py-2'
+          selectedDir.includes(name)
+            ? 'flex flex-col gap-[4px] items-center justify-center w-16 p-1 py-2 bg-blue-600/10 border border-white/20 cursor-pointer'
+            : 'flex flex-col gap-[4px] items-center justify-center w-16 p-1 py-2 cursor-pointer'
         }
       >
-        <img src={imgUrl} className="w-10 h-10" />
-        <span className="text-white text-xs">{name}</span>
+        <img
+          draggable={false}
+          onDragStart={(e) => e.preventDefault()}
+          src={imgUrl}
+          className='w-10 h-10'
+        />
+        <span className='text-white text-xs'>{name}</span>
       </div>
     </Draggable>
   );
