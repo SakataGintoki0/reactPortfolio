@@ -1,6 +1,6 @@
 # Project Overview
 
-This is a React project, likely a portfolio or a desktop-like application, built with Vite and TypeScript. It utilizes Tailwind CSS for styling and ESLint for linting. The project structure suggests a component-based architecture with state management handled in `src/store`.
+This is a React project, built with Vite and TypeScript. It utilizes Tailwind CSS for styling and ESLint for linting. The project structure suggests a component-based architecture with state management handled in `src/store`.
 
 ## Key Technologies:
 - React
