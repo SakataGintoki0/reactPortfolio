@@ -1,5 +1,6 @@
 import Container from './components/container/Container';
 import { useEffect } from 'react';
+import React from 'react';
 
 function App() {
   useEffect(() => {
@@ -14,7 +15,7 @@ function App() {
     };
   }, []);
   return (
-    <div className='h-full w-full'>
+    <div className='h-screen w-full overflow-hidden'>
       <Container />
     </div>
   );
