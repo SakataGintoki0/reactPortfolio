@@ -43,6 +43,20 @@
   --info: #17a2b8;
   --info-light: #54c5d1;
 
+  /* paint color */
+  --paint-iconDefault: #616161;
+  --paint-iconDisabled: #bdbdbd;
+  --paint-iconHover: #424242;
+  --paint-iconPressed: #212121;
+
+  --paint-buttonBg: #f5f5f5;
+  --paint-buttonBgHover: #e0e0e0;
+  --paint-buttonBgActive: #d0d0d0;
+
+  --paint-primary: #1976d2;
+  --paint-secondary: #424242;
+  --paint-accent: #ff4081;
+
   /* Terminal Colors - Inspired by popular terminal themes */
   --terminal-black: #1e1e1e;
   --terminal-red: #f44747;

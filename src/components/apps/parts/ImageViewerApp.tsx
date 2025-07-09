@@ -1,6 +1,7 @@
 import { useAppearancesStore } from '../../../store/appearancesStore';
 import { useImageStore } from '../../../store/imageStore';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
+import React from 'react';
 
 export default function ImageViewer() {
   const activeImageIndex = useImageStore((state) => state.activeImageIndex);

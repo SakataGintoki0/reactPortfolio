@@ -2,6 +2,7 @@ import { wallpapers } from '../../../constants/constants';
 import { useAppearancesStore } from '../../../store/appearancesStore';
 import { useAppStore } from '../../../store/appStore';
 import { useImageStore } from '../../../store/imageStore';
+import React from 'react';
 
 export default function WallpapersApp() {
   const selectedBg = useAppearancesStore((state) => state.selectedBg);

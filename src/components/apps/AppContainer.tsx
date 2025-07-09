@@ -16,6 +16,7 @@ export default function AppContainer({
   const closeApp = useAppStore((state) => state.closeApp);
   const setActiveApp = useAppStore((state) => state.setActiveApp);
   const activeApp = useAppStore((state) => state.activeApp);
+  const updateAppPosition = useAppStore((state) => state.updateAppPosition);
 
   const handleClose = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -29,6 +30,10 @@ export default function AppContainer({
     }
   };
 
+  const handleDragStop = (e: any, data: any) => {
+    updateAppPosition(app.id, { x: data.x, y: data.y });
+  };
+
   const isActive = activeApp && app.id === activeApp.id;
 
   return (
@@ -36,14 +41,17 @@ export default function AppContainer({
       bounds='parent'
       handle='.drag-handle'
       nodeRef={nodeRef as React.RefObject<HTMLElement>}
+      position={app.position}
       onStart={() => {
+        // Use setTimeout to defer the state change slightly
         setTimeout(() => setActiveApp(app), 0);
       }}
+      onStop={handleDragStop}
     >
       <div
         ref={nodeRef}
         className={`
-          border w-[600px] h-[400px] absolute top-[100px] left-[100px] 
+          border w-[600px] h-[400px] absolute
           rounded-md overflow-hidden bg-[var(--window-bg)]
           ${isActive ? 'border-[var(--border-focus)]' : 'border-[var(--border-light)]'}
         `}
@@ -52,8 +60,8 @@ export default function AppContainer({
         }}
         onClick={handleClick}
       >
-        <div className='flex justify-between items-center bg-[var(--panel-bg)] p-2 px-4 text-[var(--text-secondary)] cursor-move drag-handle'>
-          <div className='flex-1'>{app.name}</div>
+        <div className='flex justify-between items-center bg-[var(--panel-bg)] p-[10px] px-4 text-[var(--text-secondary)] cursor-move drag-handle'>
+          <div className='flex-1 text-xs'>{app.name}</div>
           <div className='flex gap-2'>
             <span></span>
             <Button
@@ -66,7 +74,7 @@ export default function AppContainer({
             </Button>
           </div>
         </div>
-        <div className='h-[320px] p-[2px]'>{children}</div>
+        <div className='h-[320px]'>{children}</div>
         <AppFooter app={app} />
       </div>
     </Draggable>
