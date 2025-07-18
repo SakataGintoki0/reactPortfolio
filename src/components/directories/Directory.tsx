@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
-import Draggable from 'react-draggable';
-import { useAppStore } from '../../store/appStore.ts';
+import { useEffect, useRef } from "react";
+import Draggable from "react-draggable";
+import { useAppStore } from "../../store/appStore.ts";
 
 export default function Directory({
   name,
@@ -33,7 +33,7 @@ export default function Directory({
   const handleRightClick = (event: React.MouseEvent) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log('right click');
+    console.log("right click");
   };
 
   useEffect(() => {
@@ -43,17 +43,17 @@ export default function Directory({
       }
     };
 
-    window.addEventListener('click', handleClick);
+    window.addEventListener("click", handleClick);
 
     return () => {
-      window.removeEventListener('click', handleClick);
+      window.removeEventListener("click", handleClick);
     };
   }, []);
 
   return (
     <Draggable
       nodeRef={nodeRef as React.RefObject<HTMLElement>}
-      bounds='parent'
+      bounds="parent"
       onStart={() => handleMouseDown()}
     >
       <div
@@ -63,17 +63,17 @@ export default function Directory({
         onDoubleClick={handleDoubleClick}
         className={
           selectedDir.includes(name)
-            ? 'flex flex-col gap-[4px] items-center justify-center w-16 p-1 py-2 bg-blue-600/10 border border-white/20 cursor-pointer'
-            : 'flex flex-col gap-[4px] items-center justify-center w-16 p-1 py-2 cursor-pointer'
+            ? "flex flex-col gap-[4px] items-center justify-center w-20 p-[3px] py-[7px] bg-blue-600/10 border border-white/20 cursor-pointer"
+            : "flex flex-col gap-[4px] items-center justify-center w-20 p-1 py-2 cursor-pointer"
         }
       >
         <img
           draggable={false}
           onDragStart={(e) => e.preventDefault()}
           src={imgUrl}
-          className='w-10 h-10'
+          className="w-10 h-10"
         />
-        <span className='text-white text-xs'>{name}</span>
+        <span className="text-white text-xs">{name}</span>
       </div>
     </Draggable>
   );

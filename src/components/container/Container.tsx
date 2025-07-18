@@ -1,23 +1,19 @@
-import AppList from '../apps/AppList';
-import Directories from '../directories/Directories';
-
-const wallpapers = [
-  { img: '/wallpapers/1.jpg' },
-  { img: '/wallpapers/2.jpg' },
-  { img: '/wallpapers/3.jpg' },
-  { img: '/wallpapers/4.jpg' },
-];
+import { wallpapers } from "../../constants/constants";
+import { useAppearancesStore } from "../../store/appearancesStore";
+import AppList from "../apps/AppList";
+import Directories from "../directories/Directories";
 
 export default function Container() {
+  const bg = useAppearancesStore((state) => state.bg);
   return (
     <div
       style={{
-        backgroundImage: `url(${wallpapers[0].img})`,
+        backgroundImage: `url(${wallpapers[bg].img})`,
       }}
       className={`h-screen w-full relative bg-cover bg-center overflow-none`}
     >
-      <Directories />
       <AppList />
+      <Directories />
     </div>
   );
 }

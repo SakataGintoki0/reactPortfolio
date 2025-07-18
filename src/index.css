@@ -1,1 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./styles/variables.css";
+@import "./styles/tiptap.css";

@@ -1,5 +1,5 @@
-import Container from './components/container/Container';
-import { useEffect } from 'react';
+import Container from "./components/container/Container";
+import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
@@ -7,14 +7,14 @@ function App() {
       event.preventDefault();
     };
 
-    window.addEventListener('contextmenu', disableRightClick);
+    window.addEventListener("contextmenu", disableRightClick);
 
     return () => {
-      window.removeEventListener('contextmenu', disableRightClick);
+      window.removeEventListener("contextmenu", disableRightClick);
     };
   }, []);
   return (
-    <div className='h-full w-full'>
+    <div className="h-screen w-full overflow-hidden">
       <Container />
     </div>
   );
