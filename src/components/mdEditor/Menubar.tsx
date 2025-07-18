@@ -166,24 +166,7 @@ const MenuBar = () => {
         </Popover>
         <div className="w-[1px] h-8 bg-[var(--border-light)] rounded-full"></div>
 
-        {otherOptions.map((el) => (
-          <span
-            key={el.name}
-            onClick={() => el.handleClick(editor)}
-            className="hover:bg-[var(--paint-buttonBg)] p-1 rounded cursor-pointer hidden min-[1340px]:block"
-          >
-            <el.icon
-              height="24"
-              width="24"
-              color={
-                el.isActive(editor)
-                  ? "var(--icon-secondary)"
-                  : "var(--icon-primary)"
-              }
-            />
-          </span>
-        ))}
-        <div className="block  min-[1340px]:hidden">
+        <div className="block ">
           <OtherDropdown editor={editor} />
         </div>
       </div>

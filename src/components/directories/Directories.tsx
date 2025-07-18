@@ -5,8 +5,8 @@ const direoctoriesData = [
   { id: 2, name: "Socials", imgUrl: "/icons/folder.svg" },
   { id: 3, name: "Editor", imgUrl: "/icons/editor.svg" },
   { id: 4, name: "Paint", imgUrl: "/icons/paint.svg" },
-  { id: 5, name: "Browser", imgUrl: "/icons/browser.svg" },
-  { id: 6, name: "resume.pdf", imgUrl: "/icons/pdfFile.svg" },
+  { id: 5, name: "Browser", imgUrl: "/icons/internet.svg" },
+  { id: 6, name: "resume.pdf", imgUrl: "/icons/acroread.svg" },
 ];
 
 export default function Directories() {
