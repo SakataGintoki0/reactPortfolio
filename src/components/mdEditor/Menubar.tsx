@@ -3,7 +3,6 @@ import { useCurrentEditor } from "@tiptap/react";
 import {
   editOptions,
   undoOptions,
-  otherOptions,
   linkOption,
 } from "@/constants/tiptapConstants";
 import { HeadingDropdown } from "./HeadingDropdown";
