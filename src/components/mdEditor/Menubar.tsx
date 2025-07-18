@@ -140,14 +140,14 @@ const MenuBar = () => {
               />
             </button>
           </PopoverTrigger>
-          <PopoverContent className="w-64 p-3 bg-primary z-[100]" side="bottom">
+          <PopoverContent className="w-64 p-3 z-[100]" side="bottom">
             <div className="flex flex-col gap-2">
               <Label
                 htmlFor="url-input"
-                className="text-secondary-700 font-normal"
+                className="text-[var(--text-secondary)] font-normal"
               >
                 URL
-                <span className="text-secondary-brand">*</span>
+                <span className="text-[var(--error)]">*</span>
               </Label>
               <Input
                 id="url-input"

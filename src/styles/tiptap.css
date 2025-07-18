@@ -4,7 +4,7 @@
 }
 
 .tiptap p.is-editor-empty:first-child::before {
-  color: #adb5bd;
+  color: var(--text-placeholder);
   content: attr(data-placeholder);
   float: left;
   height: 0;
@@ -13,7 +13,7 @@
 }
 
 .tiptap .is-empty::before {
-  color: #adb5bd;
+  color: var(--text-placeholder);
   content: attr(data-placeholder);
   float: left;
   height: 0;
@@ -90,24 +90,24 @@
   }
 
   a {
-    color: var(--icon-secondary);
+    color: var(--accent-blue-light);
     cursor: pointer;
     text-decoration: underline;
     text-underline-offset: 2px;
   }
 
   code {
-    background-color: var(--overlay-5);
+    background-color: var(--code-bg-light);
     border-radius: 0.4rem;
-    color: var(--text-secondary-dark);
+    color: var(--code-text-light);
     font-size: 0.85rem;
-    border: 1px solid var(--border-10);
+    border: 1px solid var(--code-border-light);
     padding: 0.25em 0.3em;
   }
 
   blockquote {
-    background-color: var(--overlay-5);
-    border: 1px solid var(--border-10);
+    background-color: var(--blockquote-bg-light);
+    border: 1px solid var(--blockquote-border-light);
     display: block;
     margin: 1.5rem 0;
     padding: 12px;
