@@ -30,8 +30,11 @@ export default function AppContainer({
     }
   };
 
-  const handleDragStop = (e: any, data: any) => {
-    updateAppPosition(app.id, { x: data.x, y: data.y });
+  const handleDragStop = () => {
+    if (nodeRef.current) {
+      const rect = nodeRef.current.getBoundingClientRect();
+      updateAppPosition(app.id, { x: rect.x, y: rect.y });
+    }
   };
 
   const isActive = activeApp && app.id === activeApp.id;
@@ -51,8 +54,7 @@ export default function AppContainer({
       <div
         ref={nodeRef}
         className={`
-          border w-[600px] h-[400px] absolute
-          rounded-md overflow-hidden bg-[var(--window-bg)]
+          border absolute rounded-md overflow-hidden bg-[var(--window-bg)]
           ${isActive ? 'border-[var(--border-focus)]' : 'border-[var(--border-light)]'}
         `}
         style={{
@@ -74,7 +76,7 @@ export default function AppContainer({
             </Button>
           </div>
         </div>
-        <div className='h-[320px]'>{children}</div>
+        <div>{children}</div>
         <AppFooter app={app} />
       </div>
     </Draggable>

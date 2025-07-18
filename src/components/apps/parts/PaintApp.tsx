@@ -4,35 +4,36 @@ import {
   Eraser,
   Circle,
   Slash,
-} from "lucide-react";
+} from 'lucide-react';
 import React, {
   Dispatch,
   SetStateAction,
   useEffect,
   useRef,
   useState,
-} from "react";
-import { Button } from "../../ui/button";
+} from 'react';
+import { Button } from '../../ui/button';
 
-type DrawMode = "draw" | "rect" | "erase" | "ellipse" | "line";
+type DrawMode = 'draw' | 'rect' | 'erase' | 'ellipse' | 'line';
 interface Point {
   x: number;
   y: number;
 }
 
 export default function PaintApp() {
-  const [mode, setMode] = useState<DrawMode>("draw");
+  const [mode, setMode] = useState<DrawMode>('draw');
   const [strokeSize, setStrokeSize] = useState<number>(3);
   return (
-    <div className="flex flex-row h-full w-full">
-      <div className="w-[90px]">
+    <div className='flex flex-row h-[500px] w-[700px]'>
+      <div className='w-[90px]'>
         <SideBar
+          mode={mode}
           setMode={setMode}
           strokeSize={strokeSize}
           setStrokeSize={setStrokeSize}
         />
       </div>
-      <div className="flex-1 h-[320px] w-[508px] bg-[#fff]">
+      <div className='flex-1 h-full w-full bg-[#fff]'>
         <Canvas mode={mode} strokeSize={strokeSize} />
       </div>
     </div>
@@ -46,56 +47,61 @@ interface SidebarDataType {
 }
 
 const sidebarData: SidebarDataType[] = [
-  { name: "Draw", value: "draw", icon: Edit2Icon },
-  { name: "Rect", value: "rect", icon: RectangleHorizontal },
-  { name: "Ellipse", value: "ellipse", icon: Circle },
-  { name: "Line", value: "line", icon: Slash },
-  { name: "Erase", value: "erase", icon: Eraser },
+  { name: 'Draw', value: 'draw', icon: Edit2Icon },
+  { name: 'Rect', value: 'rect', icon: RectangleHorizontal },
+  { name: 'Ellipse', value: 'ellipse', icon: Circle },
+  { name: 'Line', value: 'line', icon: Slash },
+  { name: 'Erase', value: 'erase', icon: Eraser },
 ];
 
 function SideBar({
   setMode,
   strokeSize,
   setStrokeSize,
+  mode,
 }: {
   setMode: Dispatch<SetStateAction<DrawMode>>;
   strokeSize: number;
   setStrokeSize: Dispatch<SetStateAction<number>>;
+  mode: DrawMode;
 }) {
   return (
-    <div className="w-[80px] m-auto h-full pt-2 flex flex-col justify-between items-center">
-      <div className="w-fit flex flex-wrap gap-1 mx-auto">
+    <div className='w-[80px] m-auto h-full pt-2 flex flex-col justify-between items-center'>
+      <div className='w-fit flex flex-wrap gap-1 mx-auto'>
         {sidebarData.map((el) => {
           return (
             <Button
               key={el.name}
-              variant={"paintIcon"}
-              size={"sm"}
+              variant={'paintIcon'}
+              size={'sm'}
+              className={`${mode === el.value ? '!bg-[var(--paint-buttonBgHover)]' : ''}`}
               onClick={() => setMode(el.value)}
             >
-              <el.icon color={"var(--paint-accent)"} />
+              <el.icon color={'var(--text-muted)'} />
             </Button>
           );
         })}
       </div>
-      <div className="flex flex-col items-start w-full gap-1 mb-2 px-1">
-        <div className="flex justify-between items-center w-full">
+      <div className='flex flex-col items-start w-full gap-1 mb-2 px-1'>
+        <div className='flex justify-between items-center w-full'>
           <label
-            htmlFor="stroke-size-slider"
-            className="text-xs text-[var(--paint-buttonBg)]"
+            htmlFor='stroke-size-slider'
+            className='text-xs text-[var(--text-primary)]'
           >
             Size:
           </label>
-          <span className="text-xs text-gray-500">{strokeSize}px</span>
+          <span className='text-xs text-[var(--text-muted)]'>
+            {strokeSize}px
+          </span>
         </div>
         <input
-          id="stroke-size-slider"
-          type="range"
+          id='stroke-size-slider'
+          type='range'
           min={1}
           max={32}
           value={strokeSize}
           onChange={(e) => setStrokeSize(Number(e.target.value))}
-          className="w-full accent-[var(--paint-buttonBg)]"
+          className='w-full cursor-[ew-resize] accent-[var(--text-muted)]'
         />
       </div>
     </div>
@@ -113,26 +119,25 @@ function Canvas({ mode, strokeSize }: { mode: DrawMode; strokeSize: number }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    canvas.width = 508;
-    canvas.height = 320;
-    const context = canvas.getContext("2d");
+    canvas.width = 610;
+    canvas.height = 500;
+    const context = canvas.getContext('2d');
 
     if (context) {
-      context.lineCap = "round";
-      context.strokeStyle = "#000";
+      context.lineCap = 'round';
+      context.strokeStyle = '#000';
       context.lineWidth = 3;
       setCtx(context);
     }
   }, []);
 
-  // Set stroke style and width based on mode
   useEffect(() => {
     if (!ctx) return;
-    if (mode === "erase") {
-      ctx.strokeStyle = "#fff"; // Erase with white (background color)
+    if (mode === 'erase') {
+      ctx.strokeStyle = '#fff'; // Erase with white (background color)
       ctx.lineWidth = strokeSize * 3; // Eraser is thicker
     } else {
-      ctx.strokeStyle = "#000";
+      ctx.strokeStyle = '#000';
       ctx.lineWidth = strokeSize;
     }
   }, [mode, ctx, strokeSize]);
@@ -152,11 +157,11 @@ function Canvas({ mode, strokeSize }: { mode: DrawMode; strokeSize: number }) {
     if (!ctx) return;
 
     const { x, y } = getMousePos(e);
-    if (mode === "draw" || mode === "erase") {
+    if (mode === 'draw' || mode === 'erase') {
       ctx.beginPath();
       ctx.moveTo(x, y);
       setIsDrawing(true);
-    } else if (mode === "rect" || mode === "ellipse" || mode === "line") {
+    } else if (mode === 'rect' || mode === 'ellipse' || mode === 'line') {
       setStartPoint({ x, y });
       setIsDrawing(true);
       const canvas = canvasRef.current;
@@ -170,19 +175,19 @@ function Canvas({ mode, strokeSize }: { mode: DrawMode; strokeSize: number }) {
     if (!isDrawing || !ctx) return;
 
     const { x, y } = getMousePos(e);
-    if (mode === "draw" || mode === "erase") {
+    if (mode === 'draw' || mode === 'erase') {
       ctx.lineTo(x, y);
       ctx.stroke();
     } else if (
-      (mode === "rect" || mode === "ellipse" || mode === "line") &&
+      (mode === 'rect' || mode === 'ellipse' || mode === 'line') &&
       imageData
     ) {
       ctx.putImageData(imageData, 0, 0);
       const width = x - startPoint.x;
       const height = y - startPoint.y;
-      if (mode === "rect") {
+      if (mode === 'rect') {
         ctx.strokeRect(startPoint.x, startPoint.y, width, height);
-      } else if (mode === "ellipse") {
+      } else if (mode === 'ellipse') {
         ctx.beginPath();
         ctx.ellipse(
           startPoint.x + width / 2,
@@ -194,7 +199,7 @@ function Canvas({ mode, strokeSize }: { mode: DrawMode; strokeSize: number }) {
           2 * Math.PI
         );
         ctx.stroke();
-      } else if (mode === "line") {
+      } else if (mode === 'line') {
         ctx.beginPath();
         ctx.moveTo(startPoint.x, startPoint.y);
         ctx.lineTo(x, y);
@@ -208,15 +213,15 @@ function Canvas({ mode, strokeSize }: { mode: DrawMode; strokeSize: number }) {
 
     const { x, y } = getMousePos(e);
     if (
-      (mode === "rect" || mode === "ellipse" || mode === "line") &&
+      (mode === 'rect' || mode === 'ellipse' || mode === 'line') &&
       imageData
     ) {
       const width = x - startPoint.x;
       const height = y - startPoint.y;
       ctx.putImageData(imageData, 0, 0);
-      if (mode === "rect") {
+      if (mode === 'rect') {
         ctx.strokeRect(startPoint.x, startPoint.y, width, height);
-      } else if (mode === "ellipse") {
+      } else if (mode === 'ellipse') {
         ctx.beginPath();
         ctx.ellipse(
           startPoint.x + width / 2,
@@ -228,7 +233,7 @@ function Canvas({ mode, strokeSize }: { mode: DrawMode; strokeSize: number }) {
           2 * Math.PI
         );
         ctx.stroke();
-      } else if (mode === "line") {
+      } else if (mode === 'line') {
         ctx.beginPath();
         ctx.moveTo(startPoint.x, startPoint.y);
         ctx.lineTo(x, y);
@@ -243,10 +248,8 @@ function Canvas({ mode, strokeSize }: { mode: DrawMode; strokeSize: number }) {
     <canvas
       ref={canvasRef}
       style={{
-        width: "508px",
-        height: "320px",
-        display: "block",
-        cursor: mode === "erase" ? "cell" : "crosshair",
+        display: 'block',
+        cursor: mode === 'erase' ? 'cell' : 'crosshair',
       }}
       onMouseDown={startDrawing}
       onMouseMove={draw}

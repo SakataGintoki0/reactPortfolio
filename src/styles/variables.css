@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Background Colors - Ubuntu/GNOME inspired */
+    --desktop-bg: #1a1a1a;
+    --panel-bg: #2d2d2d;
+    --window-bg: #242424;
+    --sidebar-bg: #1e1e1e;
+    --hover-bg: #383838;
+    --active-bg: #404040;
+
+    /* Border Colors */
+    --border: #3a3a3a;
+    --border-light: #4a4a4a;
+    --border-focus: #6b7280;
+
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #999999;
+    --text-disabled: #666666;
+
+    /* Accent Colors - Modern Linux desktop palette */
+    --accent-blue: #0078d4;
+    --accent-blue-light: #409cff;
+    --accent-blue-dark: #106ebe;
+
+    --accent-orange: #ff8c00;
+    --accent-orange-light: #ffb347;
+    --accent-orange-dark: #e07b00;
+
+    /* Status Colors */
+    --success: #28a745;
+    --success-light: #48c9b0;
+    --warning: #ffc107;
+    --warning-light: #ffd54f;
+    --error: #dc3545;
+    --error-light: #ff6b6b;
+    --error-dark: #7f1d1d;
+    --info: #17a2b8;
+    --info-light: #54c5d1;
+
+    /* icons */
+    --icon-primary: #616161;
+    --icon-secondary: #bdbdbd;
+
+    /* paint color */
+    --paint-iconDefault: #616161;
+    --paint-iconDisabled: #bdbdbd;
+    --paint-iconHover: #424242;
+    --paint-iconPressed: #212121;
+
+    --paint-buttonBg: #212121;
+    --paint-buttonBgHover: #424242;
+    --paint-buttonBgActive: #616161;
+
+    --paint-primary: #1976d2;
+    --paint-secondary: #424242;
+    --paint-accent: #ff4081;
+
+    /* Terminal Colors - Inspired by popular terminal themes */
+    --terminal-black: #1e1e1e;
+    --terminal-red: #f44747;
+    --terminal-green: #4ec9b0;
+    --terminal-yellow: #ffcc02;
+    --terminal-blue: #569cd6;
+    --terminal-magenta: #c586c0;
+    --terminal-cyan: #9cdcfe;
+    --terminal-white: #cccccc;
+
+    /* Bright Terminal Colors */
+    --terminal-bright-black: #666666;
+    --terminal-bright-red: #f14c4c;
+    --terminal-bright-green: #23d18b;
+    --terminal-bright-yellow: #f5f543;
+    --terminal-bright-blue: #3b8eea;
+    --terminal-bright-magenta: #d670d6;
+    --terminal-bright-cyan: #29b8db;
+    --terminal-bright-white: #e5e5e5;
+  }
+}

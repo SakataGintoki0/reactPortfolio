@@ -2,7 +2,6 @@ import { wallpapers } from '../../../constants/constants';
 import { useAppearancesStore } from '../../../store/appearancesStore';
 import { useAppStore } from '../../../store/appStore';
 import { useImageStore } from '../../../store/imageStore';
-import React from 'react';
 
 export default function WallpapersApp() {
   const selectedBg = useAppearancesStore((state) => state.selectedBg);
@@ -27,7 +26,7 @@ export default function WallpapersApp() {
   };
 
   return (
-    <div onClick={() => setSelectedBg(-1)} className='h-full'>
+    <div onClick={() => setSelectedBg(-1)} className='h-[320px] w-[600px]'>
       <div className='flex gap-8 text-gray-400 text-sm p-4'>
         {wallpapers.map((el, i) => {
           return (
