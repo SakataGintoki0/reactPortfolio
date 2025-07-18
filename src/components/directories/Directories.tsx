@@ -1,12 +1,12 @@
 import Directory from "./Directory";
 const direoctoriesData = [
-  { id: 0, name: "Projects", imgUrl: "/icons/folder.svg" },
+  // { id: 0, name: "Projects", imgUrl: "/icons/folder.svg" },
   { id: 1, name: "Wallpapers", imgUrl: "/icons/folder.svg" },
   { id: 2, name: "Socials", imgUrl: "/icons/folder.svg" },
-  { id: 3, name: "Editor", imgUrl: "/icons/folder.svg" },
-  { id: 4, name: "Paint", imgUrl: "/icons/folder.svg" },
-  { id: 5, name: "Browser", imgUrl: "/icons/folder.svg" },
-  { id: 6, name: "resume.pdf", imgUrl: "/icons/folder.svg" },
+  { id: 3, name: "Editor", imgUrl: "/icons/editor.svg" },
+  { id: 4, name: "Paint", imgUrl: "/icons/paint.svg" },
+  { id: 5, name: "Browser", imgUrl: "/icons/browser.svg" },
+  { id: 6, name: "resume.pdf", imgUrl: "/icons/pdfFile.svg" },
 ];
 
 export default function Directories() {
